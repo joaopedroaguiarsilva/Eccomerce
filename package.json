@@ -16,7 +16,6 @@
     "url": "https://github.com/joaopedroaguiarsilva/Eccomerce/issues"
   },
   "homepage": "https://github.com/joaopedroaguiarsilva/Eccomerce#readme",
-  "description": "",
   "dependencies": {
     "bootstrap": "^5.3.8",
     "dotenv": "^17.2.3",
@@ -24,5 +23,6 @@
     "express-session": "^1.18.2",
     "hbs": "^4.2.0",
     "mysql2": "^3.15.3"
-  }
+  },
+  "description": ""
 }
