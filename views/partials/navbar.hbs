@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <a class="navbar-brand" href="/">E-commerce</a>
+
+        <div class="collapse navbar-collapse">
+
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+            </ul>
+
+            <form action="/buscar" class="d-flex" method="GET">
+                <input name="q" class="form-control me-2" placeholder="Buscar produto">
+                <button class="btn btn-outline-light">Buscar</button>
+            </form>
+
+            <ul class="navbar-nav ms-4">
+
+                {{#if usuario}}
+                <li class="nav-item"><a class="nav-link" href="/pedido/meus">Meus Pedidos</a></li>
+                <li class="nav-item"><a class="nav-link" href="/usuario/logout">Sair</a></li>
+
+                {{else}}
+                <li class="nav-item"><a class="nav-link" href="/usuario/login">Login</a></li>
+                {{/if}}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/carrinho">Carrinho</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

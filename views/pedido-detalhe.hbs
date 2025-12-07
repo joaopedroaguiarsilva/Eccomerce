@@ -1,0 +1,27 @@
+<h2>Pedido #{{pedido.id}}</h2>
+
+<p>Data: {{pedido.data_pedido}}</p>
+<p>Total: R$ {{pedido.total}}</p>
+
+<h3>Itens</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Qtd</th>
+            <th>Preço</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#each itens}}
+        <tr>
+            <td>{{nome}}</td>
+            <td>{{quantidade}}</td>
+            <td>R$ {{preco}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

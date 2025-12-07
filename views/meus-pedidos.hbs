@@ -1,0 +1,36 @@
+<h2>Meus Pedidos</h2>
+
+{{#if pedidos.length}}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#each pedidos}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{data_pedido}}</td>
+            <td>R$ {{total}}</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="/pedido?id={{id}}">
+                    Ver detalhes
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+
+{{else}}
+
+<p>Você ainda não tem pedidos.</p>
+
+{{/if}}

@@ -1,0 +1,71 @@
+<h2>Carrinho</h2>
+
+{{#if itens.length}}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Qtd</th>
+            <th>Preço</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {{#each itens}}
+        <tr>
+            <td>{{produto.nome}}</td>
+
+            <td>
+                <input type="number" min="1" value="{{quantidade}}" class="form-control quantidade"
+                    data-id="{{produto.id}}">
+            </td>
+
+            <td>R$ {{produto.preco}}</td>
+            <td>R$ {{subtotal}}</td>
+
+            <td>
+                <button class="btn btn-danger remover" data-id="{{produto.id}}">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+
+<h3>Total: R$ {{total}}</h3>
+
+<form method="POST" action="/pedido/finalizar">
+    <button class="btn btn-primary">Finalizar Compra</button>
+</form>
+
+{{else}}
+
+<p>Carrinho vazio.</p>
+
+{{/if}}
+
+<script>
+    document.querySelectorAll('.quantidade').forEach(input => {
+        input.addEventListener('change', async e => {
+            const id = e.target.dataset.id;
+            const quantidade = e.target.value;
+
+            await axios.post('/carrinho/alterar', { id, quantidade });
+            location.reload();
+        });
+    });
+
+    document.querySelectorAll('.remover').forEach(btn => {
+        btn.addEventListener('click', async e => {
+            const id = e.target.dataset.id;
+
+            await axios.post('/carrinho/remover', { id });
+            location.reload();
+        });
+    });
+</script>

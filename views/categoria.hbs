@@ -1,0 +1,11 @@
+<h2>Categoria: {{categoria.nome}}</h2>
+
+<div class="row">
+    {{#each produtos}}
+    {{> product-card }}
+    {{/each}}
+
+    {{#unless produtos.length}}
+    <p>Nenhum produto nesta categoria.</p>
+    {{/unless}}
+</div>

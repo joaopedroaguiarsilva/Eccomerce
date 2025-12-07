@@ -1,0 +1,11 @@
+<h2>Produtos</h2>
+
+<div class="row">
+    {{#each produtos}}
+    {{> product-card }}
+    {{/each}}
+
+    {{#unless produtos.length}}
+    <p>Nenhum produto encontrado.</p>
+    {{/unless}}
+</div>

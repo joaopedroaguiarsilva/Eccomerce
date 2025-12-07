@@ -1,0 +1,23 @@
+<div class="row">
+
+    <div class="col-md-5">
+        <img src="{{produto.foto_url}}" class="img-fluid rounded">
+    </div>
+
+    <div class="col-md-7">
+        <h2>{{produto.nome}}</h2>
+        <p>{{produto.descricao}}</p>
+
+        <h4>R$ {{produto.preco}}</h4>
+
+        <p><strong>Estoque:</strong> {{saldo}}</p>
+
+        <form method="POST" action="/carrinho/add" id="formAddCarrinho">
+            <input type="hidden" name="id" value="{{produto.id}}">
+            <input type="number" name="quantidade" class="form-control w-25 mb-3" value="1" min="1">
+
+            <button class="btn btn-success">Adicionar ao Carrinho</button>
+        </form>
+
+    </div>
+</div>
