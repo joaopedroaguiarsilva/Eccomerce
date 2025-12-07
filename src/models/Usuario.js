@@ -1,7 +1,7 @@
 const db = require('../../config/db');
 
 module.exports = {
-    async criar(nome, email, senha_hash, vendedor = false) {
+    async criar(nome, email, senha_hash, vendedor = 0) {
         const sql = `
             INSERT INTO usuario (nome, email, senha_hash, vendedor)
             VALUES (?, ?, ?, ?)

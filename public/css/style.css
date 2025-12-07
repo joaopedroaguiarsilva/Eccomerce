@@ -1,0 +1,32 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+footer {
+    color: #555;
+}
+
+.produto-imagem {
+    max-height: 380px;
+    object-fit: contain;
+}
+
+.btn-primary,
+.btn-success,
+.btn-danger {
+    border-radius: 6px;
+}
+
+.table td input[type="number"] {
+    max-width: 80px;
+}

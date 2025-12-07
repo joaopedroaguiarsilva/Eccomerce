@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/joaopedroaguiarsilva/Eccomerce#readme",
   "dependencies": {
+    "axios": "^1.13.2",
+    "bcrypt": "^6.0.0",
     "bootstrap": "^5.3.8",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-handlebars": "^8.0.4",
     "express-session": "^1.18.2",
     "hbs": "^4.2.0",
     "mysql2": "^3.15.3"
