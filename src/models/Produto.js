@@ -29,11 +29,13 @@ module.exports = {
         return result.insertId;
     },
 
-    async atualizarStatus(id, ativo) {
-        await db.query(`
-            UPDATE produto SET ativo = ?
+    async inverterStatus(id) {
+        const sql = `
+            UPDATE produto
+               SET ativo = NOT ativo
              WHERE id = ?
-        `, [ativo, id]);
+        `;
+        await db.query(sql, [id]);
     },
 
     async produtosPorCategoria(categoria_id) {
@@ -46,5 +48,16 @@ module.exports = {
         `;
         const [rows] = await db.query(sql, [categoria_id]);
         return rows;
+    },
+
+    async existePedidoComProduto(id) {
+        const sql = `
+            SELECT 1
+              FROM item_pedido
+             WHERE produto_id = ?
+             LIMIT 1
+        `;
+        const [rows] = await db.query(sql, [id]);
+        return rows.length > 0;
     }
 };

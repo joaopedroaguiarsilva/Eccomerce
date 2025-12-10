@@ -9,7 +9,12 @@ app.engine('hbs', engine({
     extname: 'hbs',
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views', 'layout'),
-    partialsDir: path.join(__dirname, 'views', 'partials')
+    partialsDir: path.join(__dirname, 'views', 'partials'),
+    helpers: {
+        ifEquals: function (a, b, options) {
+            return a == b ? options.fn(this) : options.inverse(this);
+        }
+    }
 }));
 
 app.set('view engine', 'hbs');
