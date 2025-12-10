@@ -11,8 +11,16 @@ app.engine('hbs', engine({
     layoutsDir: path.join(__dirname, 'views', 'layout'),
     partialsDir: path.join(__dirname, 'views', 'partials'),
     helpers: {
-        ifEquals: function (a, b, options) {
+        ifEquals(a, b, options) {
             return a == b ? options.fn(this) : options.inverse(this);
+        },
+    
+        gt(a, b) {
+            return a > b;
+        },
+    
+        lt(a, b) {
+            return a < b;
         }
     }
 }));
@@ -43,6 +51,7 @@ app.use('/categoria', require('./src/routes/categoria'));
 app.use('/carrinho', require('./src/routes/carrinho'));
 app.use('/pedido', require('./src/routes/pedido'));
 app.use('/usuario', require('./src/routes/usuario'));
+app.use('/estoque', require('./src/routes/estoque'));
 
 app.listen(3000, () =>
     console.log("Rodando em http://localhost:3000")

@@ -1,0 +1,43 @@
+<h2>Gerenciar Estoque — {{produto.nome}}</h2>
+
+<p><strong>Saldo atual:</strong> {{saldo}}</p>
+
+<hr>
+
+<h4>Registrar Movimentação</h4>
+
+<form method="POST" action="/estoque/{{produto.id}}/movimentar" class="row g-2">
+    <div class="col-md-4">
+        <input type="number" name="quantidade" class="form-control" placeholder="Quantidade (+ / -)" required>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-primary w-100">Registrar</button>
+    </div>
+</form>
+
+<hr>
+
+<h4>Histórico</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Quantidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each historico}}
+        <tr>
+            <td>{{this.data_movimentacao}}</td>
+            <td>
+            {{#if (gt this.quantidade 0)}}
+                <span class="text-success">+{{this.quantidade}}</span>
+            {{else}}
+                <span class="text-danger">{{this.quantidade}}</span>
+            {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

@@ -21,8 +21,10 @@
 
         {{#if usuario.vendedor}}
             {{#ifEquals usuario.id produto.vendedor_id}}
+                <a href="/estoque/{{produto.id}}" class="btn btn-secondary mt-3">
+                    Gerenciar Estoque
+                </a>
                 <form method="POST" action="/produto/{{produto.id}}/update_status" class="mt-3">
-
                     {{#if produto.ativo}}
                         <button class="btn btn-danger" onclick="return confirm('Retirar da exposição?')">
                             Retirar da exposição
@@ -35,6 +37,7 @@
 
                 </form>
             {{/ifEquals}}
+
         {{/if}}
     </div>
 </div>

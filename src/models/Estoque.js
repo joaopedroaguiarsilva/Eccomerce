@@ -12,10 +12,21 @@ module.exports = {
     async saldo(produto_id) {
         const sql = `
             SELECT COALESCE(SUM(quantidade), 0) AS saldo
-              FROM estoque_movimentacao
-             WHERE produto_id = ?
+            FROM estoque_movimentacao
+            WHERE produto_id = ?
         `;
         const [rows] = await db.query(sql, [produto_id]);
         return rows[0].saldo;
+    },
+
+    async historico(produto_id) {
+        const [rows] = await db.query(`
+            SELECT *
+            FROM estoque_movimentacao
+            WHERE produto_id = ?
+            ORDER BY data_movimentacao DESC
+        `, [produto_id]);
+
+        return rows;
     }
 };
