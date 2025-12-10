@@ -1,4 +1,22 @@
-<h2>Produtos</h2>
+<h3 class="mb-3">Produtos</h3>
+
+<div class="d-flex justify-content-between mb-3">
+    <form method="GET" action="/" class="d-flex gap-2">
+        <select name="categoria" class="form-select" onchange="this.form.submit()">
+            <option value="">Todas as categorias</option>
+
+            {{#each categorias}}
+                <option value="{{id}}">{{nome}}</option>
+            {{/each}}
+        </select>
+    </form>
+
+    <div>
+        Ordenar por:
+        <a href="/?ordem=asc">Menor preço</a> |
+        <a href="/?ordem=desc">Maior preço</a>
+    </div>
+</div>
 
 <div class="row">
     {{#each produtos}}
