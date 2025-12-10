@@ -42,7 +42,8 @@ module.exports = {
         req.session.usuario = {
             id: usuario.id,
             nome: usuario.nome,
-            email: usuario.email
+            email: usuario.email,
+            vendedor: usuario.vendedor
         };
 
         res.redirect('/');

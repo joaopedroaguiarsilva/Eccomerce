@@ -21,6 +21,11 @@
             <ul class="navbar-nav ms-4">
 
                 {{#if usuario}}
+                    {{#if usuario.vendedor}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/produto/novo">Cadastrar Produto</a>
+                    </li>
+                    {{/if}}
                 <li class="nav-item"><a class="nav-link" href="/pedido/meus">Meus Pedidos</a></li>
                 <li class="nav-item"><a class="nav-link" href="/usuario/logout">Sair</a></li>
 
