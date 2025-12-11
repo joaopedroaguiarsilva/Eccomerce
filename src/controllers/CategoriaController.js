@@ -21,5 +21,29 @@ module.exports = {
             categoria,
             produtos
         });
+    },
+
+    async admin(req, res) {
+        if (!req.session.usuario || !req.session.usuario.vendedor)
+            return res.send("Acesso negado");
+
+        const categorias = await Categoria.todas();
+        const arvore = await Categoria.arvore();
+
+        res.render("categoria_admin", {
+            categorias,
+            arvore
+        });
+    },
+
+    async criar(req, res) {
+        if (!req.session.usuario || !req.session.usuario.vendedor)
+            return res.send("Acesso negado");
+
+        const { nome, mae_id } = req.body;
+
+        await Categoria.criar(nome, mae_id || null);
+
+        res.redirect("/categoria/admin");
     }
 };

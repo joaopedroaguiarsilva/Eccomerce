@@ -59,5 +59,12 @@ module.exports = {
         `;
         const [rows] = await db.query(sql, [id]);
         return rows.length > 0;
+    },
+
+    async adicionarCategoria(produto_id, categoria_id) {
+        await db.query(
+            "INSERT INTO produto_categoria (produto_id, categoria_id) VALUES (?, ?)",
+            [produto_id, categoria_id]
+        );
     }
 };

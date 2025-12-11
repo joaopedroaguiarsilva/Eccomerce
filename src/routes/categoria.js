@@ -1,7 +1,8 @@
 const express = require('express');
-const router = express.Router();
 const CategoriaController = require('../controllers/CategoriaController');
+const router = express.Router();
 
-router.get('/', CategoriaController.listar);
+router.get('/admin', CategoriaController.admin);
+router.post('/criar', CategoriaController.criar);
 
 module.exports = router;

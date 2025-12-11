@@ -1,0 +1,11 @@
+<li>
+    {{nome}}
+
+    {{#if filhas.length}}
+        <ul>
+            {{#each filhas}}
+                {{> categoria_item}}
+            {{/each}}
+        </ul>
+    {{/if}}
+</li>

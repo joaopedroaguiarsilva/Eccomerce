@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Gerenciar Categorias</h2>
+    <hr>
+
+    <form method="POST" action="/categoria/criar" class="row g-3 mt-3">
+        <div class="col-md-6">
+            <label class="form-label">Nome da Categoria</label>
+            <input type="text" name="nome" class="form-control" required>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Categoria Mãe (opcional)</label>
+            <select name="mae_id" class="form-select">
+                <option value="">Nenhuma (Categoria raiz)</option>
+
+                {{#each categorias}}
+                    <option value="{{id}}">{{nome}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="col-12 text-end">
+            <button class="btn btn-primary">Criar Categoria</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <h3>Estrutura de Categorias</h3>
+
+    <ul>
+        {{#each arvore}}
+            {{> categoria_item}}
+        {{/each}}
+    </ul>
+</div>

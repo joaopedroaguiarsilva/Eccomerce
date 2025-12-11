@@ -26,5 +26,29 @@ module.exports = {
         `;
         const [rows] = await db.query(sql, [produto_id]);
         return rows;
+    },
+
+    async filhas(mae_id) {
+        const [rows] = await db.query(
+            "SELECT * FROM categoria WHERE mae_id = ?",
+            [mae_id]
+        );
+        return rows;
+    },
+
+    async arvore() {
+        const [rows] = await db.query("SELECT * FROM categoria");
+        const mapa = {};
+    
+        rows.forEach(cat => mapa[cat.id] = { ...cat, filhas: [] });
+    
+        const raiz = [];
+    
+        rows.forEach(cat => {
+            if (cat.mae_id === null) raiz.push(mapa[cat.id]);
+            else mapa[cat.mae_id].filhas.push(mapa[cat.id]);
+        });
+    
+        return raiz;
     }
 };

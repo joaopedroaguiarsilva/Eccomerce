@@ -49,9 +49,9 @@ module.exports = {
                     ? req.body.categorias
                     : [req.body.categorias];
 
-                for (let cat of selecionadas) {
-                    await Categoria.vincularProduto(produtoId, cat);
-                }
+                    for (let categoriaId of idsCategorias) {
+                        await Produto.adicionarCategoria(produtoId, categoriaId);
+                    }
             }
 
             res.redirect("/produto/" + produtoId);
