@@ -41,21 +41,18 @@ module.exports = {
 
     let produtos;
 
-    // 🔹 Se tiver categoria selecionada, pega produtos só dessa categoria
     if (categoriaId) {
         produtos = await Produto.produtosPorCategoria(categoriaId);
     } else {
         produtos = await Produto.buscarAtivos();
     }
 
-    // 🔹 Aplica filtro de busca
     if (termo) {
         produtos = produtos.filter(p =>
             p.nome.toLowerCase().includes(termo.toLowerCase())
         );
     }
 
-    // 🔹 Ordenação
     if (ordem === 'asc') {
         produtos.sort((a, b) => a.preco - b.preco);
     } else if (ordem === 'desc') {
