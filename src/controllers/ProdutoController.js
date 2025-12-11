@@ -49,31 +49,32 @@ module.exports = {
                     ? req.body.categorias
                     : [req.body.categorias];
 
-                    for (let categoriaId of idsCategorias) {
-                        await Produto.adicionarCategoria(produtoId, categoriaId);
-                    }
+                for (let categoriaId of selecionadas) {
+                    await Produto.adicionarCategoria(produtoId, categoriaId);
+                }
             }
 
             res.redirect("/produto/" + produtoId);
 
         } catch (e) {
             console.error(e);
-            res.render("produto_novo", { error: "Erro ao criar produto." });
+            res.render("novo-produto", { error: "Erro ao criar produto." });
         }
+
     }],
 
     async updateStatus(req, res) {
         const id = req.params.id;
-    
+
         const produto = await Produto.buscarPorId(id);
         if (!produto) return res.send("Produto não encontrado");
-    
+
         if (!req.session.usuario || req.session.usuario.id !== produto.vendedor_id) {
             return res.status(403).send("Você não tem permissão.");
         }
-    
+
         await Produto.inverterStatus(id);
-    
+
         res.redirect('/produto/' + id);
     }
 

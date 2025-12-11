@@ -11,14 +11,22 @@ app.engine('hbs', engine({
     layoutsDir: path.join(__dirname, 'views', 'layout'),
     partialsDir: path.join(__dirname, 'views', 'partials'),
     helpers: {
+        // Comparação simples (igualdade)
+        eq(a, b) {
+            return a == b;
+        },
+
+        // Seu helper ifEquals (pode até remover se quiser)
         ifEquals(a, b, options) {
             return a == b ? options.fn(this) : options.inverse(this);
         },
-    
+
+        // Maior que
         gt(a, b) {
             return a > b;
         },
-    
+
+        // Menor que
         lt(a, b) {
             return a < b;
         }

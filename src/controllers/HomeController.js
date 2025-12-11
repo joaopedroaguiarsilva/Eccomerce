@@ -3,10 +3,20 @@ const Categoria = require('../models/Categoria');
 
 module.exports = {
     async index(req, res) {
-        const ordem = req.query.ordem;
+        const ordem = req.query.ordem || "";
+        const categoriaId = req.query.categoria || "";
 
-        let produtos = await Produto.buscarAtivos();
         const categorias = await Categoria.todas();
+
+        let produtos;
+
+
+        if (categoriaId) {
+            produtos = await Produto.produtosPorCategoria(categoriaId);
+        } else {
+            produtos = await Produto.buscarAtivos();
+        }
+
 
         if (ordem === 'asc') {
             produtos.sort((a, b) => a.preco - b.preco);
@@ -16,18 +26,50 @@ module.exports = {
 
         res.render('home', {
             produtos,
-            categorias
+            categorias,
+            categoriaSelecionada: categoriaId,
+            ordemSelecionada: ordem
         });
     },
 
     async buscar(req, res) {
-        const termo = req.query.q || "";
+    const termo = req.query.q || "";
+    const categoriaId = req.query.categoria || "";
+    const ordem = req.query.ordem || "";
 
-        const todos = await Produto.buscarAtivos();
-        const filtrados = todos.filter(p =>
+    const categorias = await Categoria.todas();
+
+    let produtos;
+
+    // 🔹 Se tiver categoria selecionada, pega produtos só dessa categoria
+    if (categoriaId) {
+        produtos = await Produto.produtosPorCategoria(categoriaId);
+    } else {
+        produtos = await Produto.buscarAtivos();
+    }
+
+    // 🔹 Aplica filtro de busca
+    if (termo) {
+        produtos = produtos.filter(p =>
             p.nome.toLowerCase().includes(termo.toLowerCase())
         );
-
-        res.render('home', { produtos: filtrados, termo });
     }
+
+    // 🔹 Ordenação
+    if (ordem === 'asc') {
+        produtos.sort((a, b) => a.preco - b.preco);
+    } else if (ordem === 'desc') {
+        produtos.sort((a, b) => b.preco - a.preco);
+    }
+
+    res.render('home', {
+        produtos,
+        categorias,
+        categoriaSelecionada: categoriaId,
+        ordemSelecionada: ordem,
+        termo
+    });
+}
+
+
 };
